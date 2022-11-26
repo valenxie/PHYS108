@@ -1,0 +1,43 @@
+Q1
+function sinplot
+    x = linspace(-0.5*pi, 0.5*pi, 500);
+    y = linspace(-0.5*pi, 0.5*pi, 500);
+    [x1,y1] = meshgrid(x, y);
+    z =  x1.^2 + sin(x1.*y1) +y1.^2;
+    contour(x1,y1,z);
+    grid on;
+    xlabel('X', 'FontSize', 15);
+    ylabel('Y', 'FontSize', 15);
+end
+
+Q2
+function eField
+    fsurf(@(x,y) (1./sqrt((x+0.25).^2+y.^2) + 1./sqrt((x+0.25).^2+y.^2)),[-0.24,0.24,0.0,0.24]);
+    hold on;
+    fsurf(@(x,y) (1./sqrt((x-0.25).^2+y.^2) + 1./sqrt((x-0.25).^2+y.^2)),[-0.24,0.24,0.0,0.24]);
+    grid on;
+    
+    
+end
+
+Q3
+function meshcontour
+    g = @(x,y) -x.^2/4+y.^2/4;
+    tiledlayout(2,1)
+    nexttile
+    fmesh(g,[-4,4]);
+    nexttile
+    fcontour(g,[-4,4]);    
+end
+
+Q4
+function plotParticle
+    t = linspace(0,20,10000);
+    x = (2 + 4.*cos(t)).*cos(t);
+    y = (2 + 4.*cos(t)).*sin(t);
+    z = t.^2;
+    box;
+    grid on;
+    plot3(x,y,z)
+    
+end

@@ -1,0 +1,114 @@
+*I generated my own txt files for Q1 and Q3, please check in the dropbox
+Q1
+function reverse
+    fid = fopen('random_integers.txt', 'r');
+    if fid == -1; 
+        disp('cannot open file'); 
+    end
+    A  = textscan(fid, '%f'); 
+    fclose(fid);
+    B = cell2mat(A);
+    C = flipud(B);
+    for k = 1:size(C,1)
+         fprintf('%d\n', C(k,:));     
+    end 
+end
+
+reverse
+10
+8
+10
+4
+1
+8
+5
+10
+10
+1
+
+Q2
+function displayNumber(first,last)
+    fid = fopen('list_of_telephone_numbers.txt', 'r');
+    if fid == -1
+        disp('cannot open file')
+    end
+    while feof(fid)==0
+        tline = fgetl(fid);
+        a = strfind(tline, last);
+        b = strfind(tline, first);
+        if ~isempty(a) && ~isempty(b)
+            disp(tline) 
+        end
+    end
+    fclose(fid);
+end
+
+displayNumber('Arthur', 'Jones')
+Arthur Jones (365)271-8912
+
+Q3
+function removePrime
+    fid = fopen('integersB.txt', 'r');
+    if fid == -1
+        disp('cannot open file');
+    end
+    A = textscan(fid, '%f'); 
+    fclose(fid);
+    B = cell2mat(A);
+    output = [];
+    for i = 1:size(B,1)
+        if isprime(B(i))
+        output = [output;B(i)];
+        end
+    end
+    for j = 1:length(output)
+        fprintf('%d\n', output(j));
+    end      
+end
+
+removePrime
+11
+97
+
+Q4
+function strvec
+    fid = fopen('faculty.txt', 'r');
+    if fid == -1
+        disp('cannot open file');
+    end
+    A = textscan(fid, '%s %s %s'); 
+    first = char(A{1});
+    last = char(A{2});
+    campus = char(A{3});
+    disp(campus);
+end
+
+strvec
+caltech 
+caltech 
+mit     
+stanford
+usc 
+    
+Q5
+function copyFile
+    fid = fopen('input_schedule.txt', 'r');
+    if fid == -1
+        disp('cannot open file');
+    end
+    f = fileread('input_schedule.txt');
+    str=strrep(f,'/',' ');
+    str=strrep(str,':',' ');
+    fid=fopen('processed_schedule.txt','w');
+    fwrite(fid,str,'*char');
+    type processed_schedule.txt;
+    fclose(fid);
+end
+
+copyFile
+
+10 06 11 18 00 -34.855 151.305 216.5 70.91 2.9e16
+10 08 14 28 03 -45.652 151.311 214.5 71.80 3.5e16
+10 09 13 03 55 -55.785 151.542 211.4 73.05 3.9e16
+10 11 08 45 23 -64.156 151.654 209.6 74.92 5.6e16
+10 13 05 12 56 -65.589 151.873 210.3 76.49 7.6e16

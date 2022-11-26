@@ -1,0 +1,19 @@
+HW4
+Valen Xie
+
+1. The instance with 3 colors is not satisfiable
+
+2. The instance with 4 colors is satisfiable
+
+3. The results above shows that there must be at least 4 colors to successfully color the graph
+
+The solution can be:
+Node 1: blue
+Node 5: red
+Node 6: yellow
+Node 7: red
+Node 2: green 
+Node 4: blue 
+Node 3: yellow 
+
+4. The minimum number of colors required for  graph2.txt is 8

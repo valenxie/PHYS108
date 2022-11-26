@@ -1,0 +1,120 @@
+Valen Xie hw03
+%Q1
+function output = facapp(n)
+    output = sqrt(2 .* pi).* n.*(n ./ exp(1)).^n;
+end
+
+output = facapp(100)
+
+output =
+
+  9.3248e+158
+
+factorial(100)
+
+ans =
+
+  9.3326e+157
+
+%Q2
+function [x1,x2] = quadratic2(a,b,c)
+    x1 = (-b+sqrt(b.^2-4.*a.*c))/(2.*a);
+    x2 = c./a./x1;
+    %x2 = (-b-sqrt(b.^2-4.*a.*c))/(2.*a);
+end
+
+[x1,x2] = quadratic2(1,-(10.^7+10.^(-7)),1)
+
+x1 =
+
+    10000000
+
+
+x2 =
+
+   1.0000e-07
+
+%Q4a
+function output = getpi(n)
+    frac = (1./(1:2:n));
+    sign = (-1).^(0:numel(frac)-1);
+    newfrac = frac.*sign;
+    output = sum(newfrac).*4;
+end
+
+output = getpi(21000)
+
+output =
+
+    3.1415
+
+%Q4b
+function output = getpi2(n)
+    sum = 0.0;
+    for i = 3:4:n
+        i2 = i-2;
+        sum = sum + 1.0/(i2*i);
+        output = 8.*sum;
+    end
+end
+
+output = getpi2(20001)
+
+output =
+
+    3.1415
+
+%Q5
+function cosx = getcos(x)
+    cosx = 1;
+    rel_error = 1.0e-09;
+    for i=1:100
+        addterm = ((-1)^i)*(x^(2*i))/factorial(2*i);
+        cosx = cosx + addterm;
+        if abs(addterm/cosx) < rel_error
+            break;
+        end
+    end
+end
+
+%Q6
+function output = whole_number(n)
+    if isreal(n) && rem(n,1)==0
+        output = true;
+    else
+        output = false;
+    end
+
+%Q7
+function [max1,max2] = findmax(v)
+    num = numel(v);
+    for j = 0 : length(v)
+        for i = 1: num-j-1
+            if v(i)>v(i+1)
+                temp = v(i);
+                v(i) = v(i+1);
+                v(i+1) = temp;
+            end
+        end
+    end
+    max1 = v(length(v));
+    max2 = v(length(v)-1);
+end
+
+v = [1 2 8 9 5]
+
+v =
+
+     1     2     8     9     5
+
+[max1,max2] = findmax(v)
+
+max1 =
+
+     9
+
+
+max2 =
+
+     8
+

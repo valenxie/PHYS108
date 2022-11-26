@@ -1,0 +1,133 @@
+%Q1
+function x = random_lower_letter
+    x=char(randi([97 122],1,1));
+end
+
+random_lower_letter
+
+ans =
+
+    'r'
+
+%Q2
+function findletter
+    l = char(randi([65 90],1,52000));
+    for c = [65 69 74]
+        count = length(find(l==c));
+        fprintf('Letter = %s Occurrences = %9.0d/52000\n', char(c),count)
+    end
+end
+
+findletter
+Letter = A Occurrences =      2000/52000
+Letter = E Occurrences =      2012/52000
+Letter = J Occurrences =      2023/52000
+
+%Q3
+function wordmean(a)
+    countlen = [];
+    for i = 1:length(regexp(a,'\s+'))+1
+        [fst, rest] = strtok(a);
+        countlen = [countlen length(fst)]; 
+        a = rest;
+    end
+fprintf('%f\n',mean(countlen)); 
+end
+
+wordmean('hi how are you')
+2.750000
+
+%Q4
+function output = findaletter(a,b)
+    la = lower(a);
+    lb = lower(b);
+    c = strfind(la,lb); 
+    if size(c) == 0
+        output = false;
+    else
+        output = true;
+    end
+    disp(output);
+end
+
+findaletter('haha','n')
+   0
+
+
+ans =
+
+  <a href="matlab:helpPopup logical" style="font-weight:bold">logical</a>
+
+   0
+
+findaletter('haha','h')
+   1
+
+
+ans =
+
+  <a href="matlab:helpPopup logical" style="font-weight:bold">logical</a>
+
+   1
+
+%Q5
+function remove(str, char) 
+    ls = lower(str);
+    lc = lower(char);
+    d = strrep(ls,lc,'');
+    disp(d);
+end
+
+remove('hi hi hi', 'i') 
+h h h
+
+%Q6
+function palindrome(a)
+    b = a==fliplr(a);
+    if b == ones(1,length(a))
+        disp('This is a palindrome'); 
+    else
+        disp('This is not a plaindrome'); 
+    end
+end
+
+palindrome('dad')
+This is a palindrome
+palindrome('dads')
+This is not a plaindrome
+
+%Q7
+function a = chararray(str1,str2)
+    if length(str2) > length(str1)
+        shorter = str1;
+        longer = str2;
+    else
+        shorter = str2;
+        longer = str1;
+    end
+    if length(longer)==length(shorter)
+        a = [str1;str2];
+    else
+        shorter = [shorter blanks(length(longer)-length(shorter))];
+        a = [shorter;longer];
+    end
+end
+
+a = chararray('hi','yo')
+
+a =
+
+  2×2 <a href="matlab:helpPopup char" style="font-weight:bold">char</a> 数组
+
+    'hi'
+    'yo'
+
+a = chararray('hi','yoo')
+
+a =
+
+  2×3 <a href="matlab:helpPopup char" style="font-weight:bold">char</a> 数组
+
+    'hi '
+    'yoo'
+

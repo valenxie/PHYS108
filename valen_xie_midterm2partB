@@ -1,0 +1,92 @@
+%Q2
+function max = findmax(v)
+    v = unique(v); 
+    num = numel(v);
+    for j = 0 : length(v)
+        for i = 1: num-j-1
+            if v(i)>v(i+1)
+                temp = v(i);
+                v(i) = v(i+1);
+                v(i+1) = temp;
+            end
+        end
+    end
+    max = v(length(v)-1);   
+end
+
+v = randi([-5,5],10,1)
+
+v =
+
+    -4
+     5
+     5
+     0
+     3
+    -4
+    -1
+     5
+     3
+     5
+
+max = findmax(v)
+
+max =
+
+     3
+
+%Q5
+function output = checkRect(x1,y1,x2,y2,x3,y3,x4,y4)
+    width = sqrt((x2-x1).^2)+sqrt((y2-y1).^2);
+    width2 = sqrt((x3-x4).^2)+sqrt((y3-y4).^2);
+    if width == width2
+        height = sqrt((x4-x1).^2)+sqrt((y4-y1).^2);
+        height2 = sqrt((x3-x2).^2)+sqrt((y3-y2).^2);
+        if height == height2
+            output = 1;
+        else
+            output = 0;
+        end
+    else 
+        output = 0;
+    end            
+end
+
+output =checkRect(-3,2,4,2,4,-3,-3,-3)
+
+output =
+
+     1
+
+output =checkRect(-3,2,4,2,4,-3,-3,-2)
+
+output =
+
+     0
+
+%Q9
+function checkFile
+    txt1 = fileread('inputA.txt');
+    txt2 = fileread('inputD.txt');
+    if strcmp(txt1, txt2)
+        disp('Identical')
+    else
+        disp('Not Identical')
+    end
+end
+
+checkFile
+Not Identical
+
+function checkFile
+    txt1 = fileread('inputA.txt');
+    txt2 = fileread('inputB.txt');
+    if strcmp(txt1, txt2)
+        disp('Identical')
+    else
+        disp('Not Identical')
+    end
+end
+
+checkFile
+Identical
